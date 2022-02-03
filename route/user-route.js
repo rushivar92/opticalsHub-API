@@ -1,10 +1,19 @@
-const accontroller = require('../controller/ac-controllers');
+const { json } = require('express/lib/response');
+const accontroller = require('../controller/user-controllers');
 
 
 exports.routesConfig = function (app) {
+  app.get('/api/v1/list/users', [
+    //authorization.verifyToken,
+    accontroller.list_users
+  ]);
   app.post('/api/v1/user/create', [
     //authorization.verifyToken,
-    accontroller.insert
+    accontroller.sign_up
+  ]);
+  app.put('/api/v1/user/update', [
+    //authorization.verifyToken,
+    accontroller.update_user
   ]);
   app.post('/api/v1/signin', [
     accontroller.login
@@ -26,10 +35,10 @@ exports.routesConfig = function (app) {
     accontroller.forgotPassword
   ]);
   
-  app.post('/get/list',[
-    accontroller.getList
+  app.post('/api/v1/user/deactivate',[
+    accontroller.userDeactive
   ])
-  app.post('/get/toplevel',[
-    accontroller.gettoplevel
+  app.post('/api/v1/user/logout',[
+    accontroller.logout
   ])
 };

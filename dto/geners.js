@@ -1,9 +1,9 @@
 const Joi = require('joi');
-const mongoose = require('mongoose');
-// const config = require('../common/config/env.config');
-// mongoose.connect(config.dbstring, { useNewUrlParser: true, useUnifiedTopology: true ,useFindAndModify: false});
 require('dotenv').config()
+var mongoose = require('mongoose');
+const config = require('../common/config/env.config');
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true ,useFindAndModify: false});
+
 
 
 const Geners= mongoose.model('geners', new mongoose.Schema({
